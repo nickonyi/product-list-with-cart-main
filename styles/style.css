@@ -3,3 +3,22 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.main-content {
+    display: flex;
+    padding-top: 5%;
+    padding-inline: 5%;
+}
+
+.main-content-area {
+  flex: 3;
+}
+
+.main-content-cart {
+  flex: 1;
+}
+
+.img-area {
+    width: 250px;
+    height: auto;
+}
