@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: "Red Hat Text", sans-serif;
+    font-optical-sizing: auto;
+}
+
 .main-content {
     display: flex;
     padding-top: 5%;
@@ -19,7 +24,7 @@
 }
 
 .img-area {
-    width: 250px;
+    width: 275px;
     height: auto;
 }
 
@@ -33,6 +38,21 @@
     border-radius: 5px;
 }
 
+.main-content-img-cart {
+    background: white;
+    border: 1px solid black;
+    width:160px;
+    position: relative;
+    left:60px;
+    padding-block: 15px;
+    padding-left: 15px;
+    top:-25px;
+    display: flex;
+    align-items: center;
+    gap:10px;
+    border-radius: 35px;
+    font-weight: 500;
+}
 /* Media query for mobile */
 @media (max-width: 455px) {
     .main-content {
