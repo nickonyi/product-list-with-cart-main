@@ -22,3 +22,31 @@
     width: 250px;
     height: auto;
 }
+
+.main-content-area-products-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* Media query for mobile */
+@media (max-width: 455px) {
+    .main-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main-content-area-products-container {
+        align-items: center;
+        justify-content: center;
+    }
+    .main-content-area h1{
+        margin-left: 60px;
+        
+    }
+    
+  
+    /* Add other styles specific to mobile view here */
+  }
+  
