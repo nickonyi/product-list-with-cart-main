@@ -16,9 +16,9 @@ export const addCart = (e) => {
         const prodNumber = document.createElement('div');
         const divAdd = document.createElement('div');
 
-        divSub.classList.add('.div-sub');
-        prodNumber.classList.add('.div-num');
-        divAdd.classList.add('.div-add');
+        divSub.classList.add('div-sub');
+        prodNumber.classList.add('div-num');
+        divAdd.classList.add('div-add');
 
         divSub.textContent = "-";
         prodNumber.textContent = 1;
