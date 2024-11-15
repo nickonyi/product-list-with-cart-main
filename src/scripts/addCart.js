@@ -3,7 +3,8 @@ export const addCart = (e) => {
     const img = parent.querySelector('.img-area');
     const btnParent = parent.querySelector('.main-content-img-cart');
     const btn = btnParent.querySelector('.img-cart-container');
-    img.classList.toggle('selected');
+    const existingBtnContainer = btnParent.querySelector('.btn-flex');
+    img.classList.add('selected');
    
     
 
@@ -11,12 +12,13 @@ export const addCart = (e) => {
 
     //change content of the button when clicked
     const changeBtnCartContent = () => {
+        if (!existingBtnContainer) {
         btn.style.display = "none";
         const btnContainer = document.createElement('div');
         btnContainer.classList.add('btn-flex');
         btnParent.classList.add('selected-btn');
         const divSub = document.createElement('div');
-        const prodNumber = document.createElement('div');
+        let prodNumber = document.createElement('div');
         const divAdd = document.createElement('div');
         
         btnContainer.classList.add('btn-container');
@@ -32,7 +34,38 @@ export const addCart = (e) => {
         btnContainer.appendChild(prodNumber);
         btnContainer.appendChild(divAdd)
         btnParent.appendChild(btnContainer)
+
+        //add event listeners to increament or decrement the product number
+        divAdd.addEventListener("click", ()=> {
+            let productNumber = prodNumber.textContent;
+            productNumber++;
+            prodNumber.textContent = productNumber;
+            
+        })
+
+        divSub.addEventListener("click", ()=> {
+            let productNumber = prodNumber.textContent;
+            productNumber--;
+            prodNumber.textContent = productNumber;
+
+            
+            
+
+            if (productNumber < 1) {
+                btnContainer.style.display ="none";
+                btn.style.display = "flex";
+                
+                
+                //img.classList.remove('selected');
+                btnParent.classList.remove('selected-btn');
+                btnContainer.remove();
+                
+            }
+            
+        })
+        }   
     }
+
 
     changeBtnCartContent(); 
 
