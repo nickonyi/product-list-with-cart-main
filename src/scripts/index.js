@@ -2,6 +2,8 @@ import '../styles/style.css'
 import products from '../../data.json'
 
 const productGrid = document.querySelector('#product-grid');
+console.log(products[0].image.desktop);
+
 
 const productDisplay = () => {
     products.forEach((product) => {
