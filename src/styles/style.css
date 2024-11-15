@@ -87,6 +87,23 @@ body {
     color: hsl(7, 20%, 60%);
     font-weight: 500;
 }
+
+.selected {
+    border: 4px solid hsl(14, 86%, 42%);
+}
+
+.selected-btn {
+    background-color: hsl(14, 86%, 42%);
+    border: none;
+    color: white;
+}
+
+.btn-flex {
+    display: flex;
+    padding-inline: 20px;
+    justify-content: space-between;
+}
+
 /* Media query for mobile */
 @media (max-width: 455px) {
     .main-content {

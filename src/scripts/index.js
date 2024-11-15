@@ -1,9 +1,10 @@
 import '../styles/style.css'
 import products from '../../data.json'
-
-const productGrid = document.querySelector('#product-grid');
+import { addCart } from './addCart';
 
 const productDisplay = () => { 
+  const productGrid = document.querySelector('#product-grid');
+
    if (window.innerWidth < 440) {
     products.forEach((product) => {
       productGrid.innerHTML += `
@@ -54,3 +55,10 @@ const productDisplay = () => {
 
 productDisplay();
 
+
+const addCartBtn = document.querySelectorAll('.main-content-img-cart');
+
+//event listeners
+addCartBtn.forEach((btn) => {
+  btn.addEventListener("click",addCart)
+})
