@@ -35,8 +35,10 @@ const productDisplay = () => {
         <div class="main-content-img-area" >
           <img class="img-area" src="${product.image.desktop}" alt="${product.category}">
           <div class="main-content-img-cart">
+          <div class="img-cart-container">
            <img src="../assets/images/icon-add-to-cart.svg" alt="">
            <span>Add to cart</span>
+           </div>
           </div>
        </div>   
     <!--Description area-->

@@ -47,11 +47,13 @@ body {
     padding-block: 15px;
     padding-left: 15px;
     top:-25px;
+    border-radius: 35px;
+    font-weight: 500;
+}
+.img-cart-container {
     display: flex;
     align-items: center;
     gap:10px;
-    border-radius: 35px;
-    font-weight: 500;
 }
 
 .main-content-img-cart:hover {
@@ -100,14 +102,15 @@ body {
 
 .btn-flex {
     display: flex;
-    padding-inline: 20px;
+    padding-inline: 10px;
     justify-content: space-between;
 }
 
 .div-add,.div-sub {
     border: 1px solid white;
-    height:20px;
-    width: 20px;
+    height:15px;
+    width: 15px;
+    padding: 10px;
     border-radius: 50%;
     font-size: 20px;
     display: flex;
