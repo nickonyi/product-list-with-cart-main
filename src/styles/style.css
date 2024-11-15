@@ -54,6 +54,10 @@ body {
     font-weight: 500;
 }
 
+.main-content-img-cart:hover {
+    cursor: pointer;
+}
+
 .main-content-cart {
     background-color: white;
     padding-inline: 40px;
