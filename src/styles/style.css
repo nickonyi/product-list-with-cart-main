@@ -27,6 +27,7 @@ body {
 .img-area {
     width: 275px;
     height: auto;
+    border-radius: 5px;
 }
 
 .main-content-area-products-container {
@@ -35,9 +36,7 @@ body {
     gap: 15px;
     margin-top: 30px;
 }
-.img-area {
-    border-radius: 5px;
-}
+
 
 .main-content-img-cart {
     background: white;
@@ -89,6 +88,7 @@ body {
     .main-content {
         display: flex;
         flex-direction: column;
+        gap:40px;
     }
 
     .main-content-area-products-container {
@@ -100,10 +100,16 @@ body {
         
     }
 
-    .main-content-cart {
+    .main-content-cart-container {
         padding-inline: 20px;
+        padding-block-end: 35px;
     }
     
+    .img-area {
+        width: 275px;
+        height: 220px;
+        border-radius: 5px;
+    }
   
     /* Add other styles specific to mobile view here */
   }
