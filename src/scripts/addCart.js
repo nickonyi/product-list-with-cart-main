@@ -1,6 +1,6 @@
 export const addCart = (e) => {
     const parent = e.target.closest('.main-content-img-area');
-    const img = parent.querySelector('.img-area');
+    let img = parent.querySelector('.img-area');    
     const btnParent = parent.querySelector('.main-content-img-cart');
     const btn = btnParent.querySelector('.img-cart-container');
     const existingBtnContainer = btnParent.querySelector('.btn-flex');
@@ -50,10 +50,16 @@ export const addCart = (e) => {
             prodNumber.textContent = productNumber;
            
             if (productNumber < 1) {
-                btnContainer.remove();
                 btn.style.display = "flex";    
                 img.classList.remove('selected');
                 btnParent.classList.remove('selected-btn');
+                //btn.remove();  
+             
+                setTimeout(() => {
+                    btnContainer.remove(); // Safely remove btnContainer
+                    console.log("After btnContainer removal:", img);
+                }, 0);
+
             }
             
         })
@@ -64,4 +70,3 @@ export const addCart = (e) => {
     changeBtnCartContent(); 
 
 }
-
