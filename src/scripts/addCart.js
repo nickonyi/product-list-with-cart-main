@@ -4,7 +4,7 @@ export const addCart = (e) => {
     const btnParent = parent.querySelector('.main-content-img-cart');
     const btn = btnParent.querySelector('.img-cart-container');
     const existingBtnContainer = btnParent.querySelector('.btn-flex');
-    img.classList.add('selected');
+    
    
     
 
@@ -12,8 +12,9 @@ export const addCart = (e) => {
 
     //change content of the button when clicked
     const changeBtnCartContent = () => {
-        if (!existingBtnContainer) {
+        if (!existingBtnContainer) {    
         btn.style.display = "none";
+        img.classList.add('selected');
         const btnContainer = document.createElement('div');
         btnContainer.classList.add('btn-flex');
         btnParent.classList.add('selected-btn');
@@ -47,22 +48,12 @@ export const addCart = (e) => {
             let productNumber = prodNumber.textContent;
             productNumber--;
             prodNumber.textContent = productNumber;
-
-            
-            
-
+           
             if (productNumber < 1) {
-                btnContainer.style.display ="none";
-                btn.style.display = "flex";
-                
-                
+                btnContainer.remove();
+                btn.style.display = "flex";    
                 img.classList.remove('selected');
-                console.log(img);
-                
-                //btnParent.classList.remove('selected-btn');
-                //btnContainer.classList.remove('flex-btn');
-                
-                
+                btnParent.classList.remove('selected-btn');
             }
             
         })
