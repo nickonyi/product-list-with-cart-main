@@ -56,9 +56,12 @@ export const addCart = (e) => {
                 btn.style.display = "flex";
                 
                 
-                //img.classList.remove('selected');
-                btnParent.classList.remove('selected-btn');
-                btnContainer.remove();
+                img.classList.remove('selected');
+                console.log(img);
+                
+                //btnParent.classList.remove('selected-btn');
+                //btnContainer.classList.remove('flex-btn');
+                
                 
             }
             
