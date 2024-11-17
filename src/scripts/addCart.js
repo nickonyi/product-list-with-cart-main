@@ -4,6 +4,8 @@ export const addCart = (e) => {
     const btnParent = parent.querySelector('.main-content-img-cart');
     const btn = btnParent.querySelector('.img-cart-container');
     const existingBtnContainer = btnParent.querySelector('.btn-flex');
+    const cartBody = document.querySelector('.main-content-cart-body');
+    cartBody.remove();
     
    
     
@@ -36,11 +38,18 @@ export const addCart = (e) => {
         btnContainer.appendChild(divAdd)
         btnParent.appendChild(btnContainer)
 
+        //function to add things in the product card
+        const addItemsToProductCart = () => {
+
+        }
+
         //add event listeners to increament or decrement the product number
         divAdd.addEventListener("click", ()=> {
             let productNumber = prodNumber.textContent;
             productNumber++;
             prodNumber.textContent = productNumber;
+
+            
             
         })
 
@@ -53,7 +62,8 @@ export const addCart = (e) => {
                 btn.style.display = "flex";    
                 img.classList.remove('selected');
                 btnParent.classList.remove('selected-btn');
-                
+                 
+             
                 setTimeout(() => {
                     btnContainer.remove(); 
                 }, 0);
