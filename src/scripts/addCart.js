@@ -5,7 +5,28 @@ export const addCart = (e) => {
     const btn = btnParent.querySelector('.img-cart-container');
     const existingBtnContainer = btnParent.querySelector('.btn-flex');
     const cartBody = document.querySelector('.main-content-cart-body');
-    cartBody.remove();
+        cartBody.remove();
+
+        //function to add things in the product card
+        const addItemsToProductCart = () => {
+            const mainContentCart = document.querySelector('.main-content-cart');
+            const cartContainer = document.createElement('div');
+            cartContainer.classList.add('cart-container');
+                    
+            const itemDetails = document.createElement('div');
+            itemDetails.classList.add('item-details');
+                    
+            const removeBtn = document.createElement('i');
+            removeBtn.classList.add('fa-regular', 'fa-circle-xmark');
+
+
+            mainContentCart.append(cartContainer,itemDetails,removeBtn);
+        }
+
+
+        addItemsToProductCart();
+    
+  
     
    
     
@@ -38,17 +59,14 @@ export const addCart = (e) => {
         btnContainer.appendChild(divAdd)
         btnParent.appendChild(btnContainer)
 
-        //function to add things in the product card
-        const addItemsToProductCart = () => {
-
-        }
-
+        
         //add event listeners to increament or decrement the product number
         divAdd.addEventListener("click", ()=> {
             let productNumber = prodNumber.textContent;
             productNumber++;
             prodNumber.textContent = productNumber;
-
+            
+            
             
             
         })
