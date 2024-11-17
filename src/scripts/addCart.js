@@ -53,11 +53,9 @@ export const addCart = (e) => {
                 btn.style.display = "flex";    
                 img.classList.remove('selected');
                 btnParent.classList.remove('selected-btn');
-                //btn.remove();  
-             
+                
                 setTimeout(() => {
-                    btnContainer.remove(); // Safely remove btnContainer
-                    console.log("After btnContainer removal:", img);
+                    btnContainer.remove(); 
                 }, 0);
 
             }
