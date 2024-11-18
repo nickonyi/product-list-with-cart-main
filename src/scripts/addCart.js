@@ -25,16 +25,40 @@ export const addCart = (e) => {
             const removeBtn = document.createElement('i');
             removeBtn.classList.add('fa-regular', 'fa-circle-xmark');
             
-            //selecting item name
-            const parentContainer = parent.closest('.main-content-area-products');
-            const item = parentContainer.querySelector('h4');
-            const itemName = document.createElement('div');
-            itemName.classList.add('item-name');
-            itemName.textContent = item.textContent;
+           // Selecting the item name
+const parentContainer = parent.closest('.main-content-area-products');
+const item = parentContainer.querySelector('h4');
+
+// Check if itemName div already exists
+let itemName = parentContainer.querySelector('.item-name');
+console.log(itemName);
+
+            if (!itemName) {
+                itemName = document.createElement('div');
+                itemName.classList.add('item-name');
+                itemName.textContent = item.textContent;
+                parentContainer.appendChild(itemName); // Append only if it doesn't already exist
+            }
+            
+            // Selecting the click count area
+            let itemCount = parentContainer.querySelector('.item-count');
+            console.log(itemCount);
+            
+            if (!itemCount) {
+                itemCount = document.createElement('div');
+                itemCount.classList.add('item-count');
+                itemCount.textContent = 1; // Initial count when first created
+                parentContainer.appendChild(itemCount); // Append only if it doesn't already exist
+            } else {
+                // Increment the count if the itemCount div already exists
+                itemCount.textContent = parseInt(itemCount.textContent) + 1;
+            }
+
+            
             
             
 
-            itemDetails.appendChild(itemName);
+            itemDetails.append(itemName,itemCount);
             cartContainer.append(itemDetails,removeBtn);
             mainContentCart.appendChild(cartContainer);
         }
@@ -80,10 +104,7 @@ export const addCart = (e) => {
         divAdd.addEventListener("click", ()=> {
             let productNumber = prodNumber.textContent;
             productNumber++;
-            prodNumber.textContent = productNumber;
-            
-            
-            
+            prodNumber.textContent = productNumber;          
             
         })
 
