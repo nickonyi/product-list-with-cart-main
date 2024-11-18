@@ -143,9 +143,14 @@ divSub.addEventListener("click", () => {
             if (productNumber > 1) {
                 productNumber--;
                 prodNumber.textContent = productNumber;
+
+                //Update the item count
+                const mainContentCart = document.querySelector('.main-content-cart');
+                let itemCount = mainContentCart.querySelector('.cart-container .item-count');
+                itemCount.textContent =`${productNumber}x`; // Update the total price
+                console.log(itemCount.textContent);
             
                 // Update the item price total
-                const mainContentCart = document.querySelector('.main-content-cart');
                 let itemPriceTotal = mainContentCart.querySelector('.cart-container .item-price-total');
                 itemPriceTotal.textContent = (productNumber * itemPriceNumber).toFixed(2); // Update the total price
                 console.log(itemPriceTotal.textContent);
@@ -166,6 +171,8 @@ divSub.addEventListener("click", () => {
                 let existingCartContainer = mainContentCart.querySelector('.cart-container');
                 if (existingCartContainer) {
                     existingCartContainer.remove();
+                    const cartBody = document.querySelector('.main-content-cart-body');
+                    cartBody.style.display = "block";
                 }
             }
         });
