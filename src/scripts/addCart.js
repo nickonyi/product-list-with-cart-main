@@ -11,7 +11,7 @@ export const addCart = (e) => {
             //remove the content that empty cart content
             const cartBody = document.querySelector('.main-content-cart-body');
             if (cartBody) {
-                cartBody.remove();
+                cartBody.style.display = "none";
             }
             
 
@@ -38,7 +38,7 @@ export const addCart = (e) => {
                 let itemCount = existingCartContainer.querySelector('.item-count');
                 let itemPriceTotal = existingCartContainer.querySelector('.item-price-total');
                 itemCount.textContent = `${parseInt(itemCount.textContent) + 1}x`;
-                itemPriceTotal.textContent = parseFloat(itemCount.textContent.replace(/[^0-9.]/g, '')) * itemPriceNumber;
+                itemPriceTotal.textContent = (parseFloat(itemCount.textContent.replace(/[^0-9.]/g, '')) * itemPriceNumber).toFixed(2);
             } else {
                 // Create a new cart container for the item
                 const cartContainer = document.createElement('div');
@@ -63,7 +63,7 @@ export const addCart = (e) => {
                 //price total
                 const itemPriceTotal = document.createElement('div');
                 itemPriceTotal.classList.add('item-price-total');
-                itemPriceTotal.textContent = 1 * itemPriceNumber;
+                itemPriceTotal.textContent = (1 * itemPriceNumber).toFixed(2);
 
                 //the price container
                 const itemPriceContainer = document.createElement('div');
@@ -87,12 +87,7 @@ export const addCart = (e) => {
         }
 
 
-        addItemsToProductCart();
-    
-  
-    
-   
-    
+       
 
 
 
@@ -121,35 +116,61 @@ export const addCart = (e) => {
         btnContainer.appendChild(prodNumber);
         btnContainer.appendChild(divAdd)
         btnParent.appendChild(btnContainer)
-
+        
+        //add items to cart
+        addItemsToProductCart();
         
         //add event listeners to increament or decrement the product number
         divAdd.addEventListener("click", ()=> {
             let productNumber = prodNumber.textContent;
             productNumber++;
-            prodNumber.textContent = productNumber;          
-            
+            prodNumber.textContent = productNumber;    
+
+
+            addItemsToProductCart();      
         })
 
-        divSub.addEventListener("click", ()=> {
-            let productNumber = prodNumber.textContent;
-            productNumber--;
-            prodNumber.textContent = productNumber;
-           
-            if (productNumber < 1) {
-                btn.style.display = "flex";    
+
+        // Event listener for decrementing product number and updating price
+divSub.addEventListener("click", () => {
+    let productNumber = parseInt(prodNumber.textContent);
+    const mainContentCart = document.querySelector('.main-content-cart');
+    const parentContainer = parent.closest('.main-content-area-products');
+    const itemP = parentContainer.querySelector('.price');
+    const itemPriceNumber =  parseFloat(itemP.textContent.replace(/[^0-9.]/g, ''));
+
+
+            if (productNumber > 1) {
+                productNumber--;
+                prodNumber.textContent = productNumber;
+            
+                // Update the item price total
+                const mainContentCart = document.querySelector('.main-content-cart');
+                let itemPriceTotal = mainContentCart.querySelector('.cart-container .item-price-total');
+                itemPriceTotal.textContent = (productNumber * itemPriceNumber).toFixed(2); // Update the total price
+                console.log(itemPriceTotal.textContent);
+                
+            } else {
+                // If product number is less than 1, remove the item from the cart
+                productNumber = 0;
+                prodNumber.textContent = productNumber;
+                btn.style.display = "flex";
                 img.classList.remove('selected');
                 btnParent.classList.remove('selected-btn');
-                 
-             
-                setTimeout(() => {
-                    btnContainer.remove(); 
-                }, 0);
-
-            }
             
-        })
-        }   
+                setTimeout(() => {
+                    btnContainer.remove();
+                }, 0);
+            
+                // Optionally, you could remove the cart container if the quantity is 0
+                let existingCartContainer = mainContentCart.querySelector('.cart-container');
+                if (existingCartContainer) {
+                    existingCartContainer.remove();
+                }
+            }
+        });
+
+      }
     }
 
 
