@@ -4,11 +4,14 @@ export const addCart = (e) => {
     const btnParent = parent.querySelector('.main-content-img-cart');
     const btn = btnParent.querySelector('.img-cart-container');
     const existingBtnContainer = btnParent.querySelector('.btn-flex');
-    const cartBody = document.querySelector('.main-content-cart-body');
-        cartBody.remove();
+    
 
         //function to add things in the product card
         const addItemsToProductCart = () => {
+            //remove the content that empty cart content
+            const cartBody = document.querySelector('.main-content-cart-body');
+            cartBody.remove();
+
             const mainContentCart = document.querySelector('.main-content-cart');
             const cartContainer = document.createElement('div');
             cartContainer.classList.add('cart-container');
