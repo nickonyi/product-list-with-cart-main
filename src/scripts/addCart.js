@@ -24,7 +24,8 @@ export const addCart = (e) => {
                     
             const removeBtn = document.createElement('i');
             removeBtn.classList.add('fa-regular', 'fa-circle-xmark');
-
+            
+            //selecting item name
             const parentContainer = parent.closest('.main-content-area-products');
             const item = parentContainer.querySelector('h4');
             const itemName = document.createElement('div');
