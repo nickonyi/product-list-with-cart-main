@@ -10,7 +10,10 @@ export const addCart = (e) => {
         const addItemsToProductCart = () => {
             //remove the content that empty cart content
             const cartBody = document.querySelector('.main-content-cart-body');
-            cartBody.remove();
+            if (cartBody) {
+                cartBody.remove();
+            }
+            
 
             const mainContentCart = document.querySelector('.main-content-cart');
             const cartContainer = document.createElement('div');
@@ -22,8 +25,17 @@ export const addCart = (e) => {
             const removeBtn = document.createElement('i');
             removeBtn.classList.add('fa-regular', 'fa-circle-xmark');
 
+            const parentContainer = parent.closest('.main-content-area-products');
+            const item = parentContainer.querySelector('h4');
+            const itemName = document.createElement('div');
+            itemName.classList.add('item-name');
+            itemName.textContent = item.textContent;
+            
+            
 
-            mainContentCart.append(cartContainer,itemDetails,removeBtn);
+            itemDetails.appendChild(itemName);
+            cartContainer.append(itemDetails,removeBtn);
+            mainContentCart.appendChild(cartContainer);
         }
 
 
