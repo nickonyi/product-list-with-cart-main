@@ -16,51 +16,74 @@ export const addCart = (e) => {
             
 
             const mainContentCart = document.querySelector('.main-content-cart');
-            const cartContainer = document.createElement('div');
-            cartContainer.classList.add('cart-container');
-                    
-            const itemDetails = document.createElement('div');
-            itemDetails.classList.add('item-details');
-                    
-            const removeBtn = document.createElement('i');
-            removeBtn.classList.add('fa-regular', 'fa-circle-xmark');
-            
-           // Selecting the item name
-const parentContainer = parent.closest('.main-content-area-products');
-const item = parentContainer.querySelector('h4');
 
-// Check if itemName div already exists
-let itemName = parentContainer.querySelector('.item-name');
-console.log(itemName);
+            // Selecting the parent container of the item being clicked
+            const parentContainer = parent.closest('.main-content-area-products');
+            const item = parentContainer.querySelector('h4');
+            const itemP = parentContainer.querySelector('.price');
+            
+            
+            const itemNameText = item.textContent;
+            const itemPriceNumber =  parseFloat(itemP.textContent.replace(/[^0-9.]/g, ''));
+            
+            
 
-            if (!itemName) {
-                itemName = document.createElement('div');
-                itemName.classList.add('item-name');
-                itemName.textContent = item.textContent;
-                parentContainer.appendChild(itemName); // Append only if it doesn't already exist
-            }
-            
-            // Selecting the click count area
-            let itemCount = parentContainer.querySelector('.item-count');
-            console.log(itemCount);
-            
-            if (!itemCount) {
-                itemCount = document.createElement('div');
-                itemCount.classList.add('item-count');
-                itemCount.textContent = 1; // Initial count when first created
-                parentContainer.appendChild(itemCount); // Append only if it doesn't already exist
+            // Check if a cart container for the item already exists
+            let existingCartContainer = Array.from(mainContentCart.querySelectorAll('.cart-container')).find(cart => {
+                return cart.querySelector('.item-name')?.textContent === itemNameText;
+            });
+
+            if (existingCartContainer) {
+                // Update the count in the existing container
+                let itemCount = existingCartContainer.querySelector('.item-count');
+                let itemPriceTotal = existingCartContainer.querySelector('.item-price-total');
+                itemCount.textContent = `${parseInt(itemCount.textContent) + 1}x`;
+                itemPriceTotal.textContent = parseFloat(itemCount.textContent.replace(/[^0-9.]/g, '')) * itemPriceNumber;
             } else {
-                // Increment the count if the itemCount div already exists
-                itemCount.textContent = parseInt(itemCount.textContent) + 1;
+                // Create a new cart container for the item
+                const cartContainer = document.createElement('div');
+                cartContainer.classList.add('cart-container');
+
+                const itemDetails = document.createElement('div');
+                itemDetails.classList.add('item-details');
+
+                const itemName = document.createElement('div');
+                itemName.classList.add('item-name');
+                itemName.textContent = itemNameText;
+
+                const itemCount = document.createElement('div');
+                itemCount.classList.add('item-count');
+                itemCount.textContent = `${1}x`; // Initial count when the item is first added
+
+                //Add item price
+                const itemPrice = document.createElement('div');
+                itemPrice.classList.add('item-price');
+                itemPrice.textContent = `@$${itemPriceNumber}`;
+
+                //price total
+                const itemPriceTotal = document.createElement('div');
+                itemPriceTotal.classList.add('item-price-total');
+                itemPriceTotal.textContent = 1 * itemPriceNumber;
+
+                //the price container
+                const itemPriceContainer = document.createElement('div');
+                itemPriceContainer.classList.add('item-price-container');
+                itemPriceContainer.append(itemCount,itemPrice,itemPriceTotal)
+            
+                // Append itemName and itemCount to itemDetails
+                itemDetails.append(itemName,itemPriceContainer);
+
+                // Add a remove button (optional)
+                const removeBtn = document.createElement('i');
+                removeBtn.classList.add('fa-regular', 'fa-circle-xmark');
+
+                // Append itemDetails and remove button to cartContainer
+                cartContainer.append(itemDetails, removeBtn);
+
+                // Append the new cartContainer to mainContentCart
+                mainContentCart.appendChild(cartContainer);
             }
 
-            
-            
-            
-
-            itemDetails.append(itemName,itemCount);
-            cartContainer.append(itemDetails,removeBtn);
-            mainContentCart.appendChild(cartContainer);
         }
 
 
