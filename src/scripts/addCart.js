@@ -167,19 +167,26 @@ divSub.addEventListener("click", (e) => {
         //productNumber = 0;
         //prodNumber.textContent = productNum
         // Remove visual indicators and container itself
-        cartContainer.querySelector('.btn').style.display = "flex";
-        cartContainer.querySelector('.img').classList.remove('selected');
-        cartContainer.querySelector('.btnParent').classList.remove('selected-btn');
-        setTimeout(() => {
-            cartContainer.remove();
-        }, 0);
-            
+        //cartContainer.querySelector('.btn').style.display = "flex";
+        //cartContainer.querySelector('.img').classList.remove('selected');
+        //cartContainer.querySelector('.btnParent').classList.remove('selected-btn');
+        //setTimeout(() => {
+        //    cartContainer.remove();
+        //}, 0);
+        //    
                 // Optionally, you could remove the cart container if the quantity is 0
-                let existingCartContainer = mainContentCart.querySelector('.cart-container');
+                let existingCartContainer = cartContainer;
                 if (existingCartContainer) {
-                    existingCartContainer.remove()              
-                    const cartBody = document.querySelector('.main-content-cart-body');
-                    cartBody.style.display = "block"              
+                    existingCartContainer.remove() 
+                    
+                    const allCartContainer = document.querySelectorAll('.cart-container'); 
+
+                    if (allCartContainer.length === 0) {
+                        const cartBody = document.querySelector('.main-content-cart-body');
+                        console.log(cartBody);
+                        
+                        cartBody.style.display = "block"   
+                    }              
                   }
                 }
 
