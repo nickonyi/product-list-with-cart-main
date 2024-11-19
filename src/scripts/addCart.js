@@ -43,7 +43,6 @@ export const addCart = (e) => {
                 // Create a new cart container for the item
                 const cartContainer = document.createElement('div');
                 cartContainer.classList.add('cart-container');
-                
 
                 const itemDetails = document.createElement('div');
                 itemDetails.classList.add('item-details');
@@ -133,29 +132,104 @@ export const addCart = (e) => {
 
 
         // Event listener for decrementing product number and updating price
-        divSub.addEventListener("click", (e) => {
-              // Find the cart container for the current product
-            const productName = parent.closest('.main-content-area-products').querySelector('h4').textContent;
-            
+divSub.addEventListener("click", (e) => {
+    
+   // Find the cart container for the current product
+   const productName = parent.closest('.main-content-area-products').querySelector('h4').textContent;
 
-        
-            // Find the corresponding cart container by product name
-            const cartContainer = Array.from(document.querySelectorAll('.cart-container')).find(cart => {
-                return cart.querySelector('.item-name').textContent === productName;
-            });
-        
-            const prodNumber = cartContainer.querySelector('.item-count');
-            let productNumber = parseInt(prodNumber.textContent.replace(/[^0-9]/g, ''), 10);
-            const priceText = cartContainer.querySelector('.item-price').textContent;
-            const itemPriceNumber = parseFloat(priceText.replace(/[^0-9.]/g, ''));
+   // Find the corresponding cart container by product name
+   const cartContainer = Array.from(document.querySelectorAll('.cart-container')).find(cart => {
+       return cart.querySelector('.item-name').textContent === productName;
+   });
 
-            console.log([productNumber,itemPriceNumber]);
-        
-                });
+   if (!cartContainer) return;
+
+   const prodNumber = cartContainer.querySelector('.item-count');
+   let productNumber = parseInt(prodNumber.textContent.replace(/[^0-9]/g, ''), 10);
+   const priceText = cartContainer.querySelector('.item-price').textContent;
+   const itemPriceNumber = parseFloat(priceText.replace(/[^0-9.]/g, ''));
+
+   // Decrease the product number if greater than 1
+   if (productNumber > 1) {
+       productNumber--;
+       prodNumber.textContent = `${productNumber}x`;
+
+       //update the imageprice area
+       const imageQuantity = parent.closest('.main-content-area-products').querySelector('.div-num');
+       imageQuantity.textContent = productNumber;
+       
+
+       // Update the total price for this product
+       const itemPriceTotal = cartContainer.querySelector('.item-price-total');
+       itemPriceTotal.textContent = (productNumber * itemPriceNumber).toFixed(2);
+   } else {
+        // If product number is less than 1, remove the item from the cart
+        //productNumber = 0;
+        //prodNumber.textContent = productNum
+        // Remove visual indicators and container itself
+        cartContainer.querySelector('.btn').style.display = "flex";
+        cartContainer.querySelector('.img').classList.remove('selected');
+        cartContainer.querySelector('.btnParent').classList.remove('selected-btn');
+        setTimeout(() => {
+            cartContainer.remove();
+        }, 0);
             
-              }
-            }
-        
+                // Optionally, you could remove the cart container if the quantity is 0
+                let existingCartContainer = mainContentCart.querySelector('.cart-container');
+                if (existingCartContainer) {
+                    existingCartContainer.remove()              
+                    const cartBody = document.querySelector('.main-content-cart-body');
+                    cartBody.style.display = "block"              
+                  }
+                }
+
+   
+    
+    
+
+    // Retrieve the product number for this container
+    //const prodNumber = container.querySelector('.item-count-number'); // Adjust selector as needed
+    //let productNumber = parseInt(prodNumber.textContent, 10);
+    //const itemPriceNumber = parseFloat(container.querySelector('.item-price').textContent); // Adjust selector if needed
+
+    //if (productNumber > 1) {
+    //    productNumber--;
+    //    prodNumber.textContent = productNumber;
+//
+//    //    // Update the item count
+//    //    const itemCount = container.querySelector('.item-count');
+//    //    itemCount.textContent = `${productNumber}x`;
+//
+//    //    // Update the item price total
+//    //    const itemPriceTotal = container.querySelector('.item-price-total');
+//    //    itemPriceTotal.textContent = (productNumber * itemPriceNumber).toFixed(2);
+//    //} else {
+//    //    // If product number is less than 1, remove the item from the cart
+//    //    productNumber = 0;
+//    //    prodNumber.textContent = productNumber;
+//
+//    //    // Remove visual indicators and container itself
+//    //    container.querySelector('.btn').style.display = "flex";
+//    //    container.querySelector('.img').classList.remove('selected');
+//    //    container.querySelector('.btnParent').classList.remove('selected-btn');
+//
+//    //    setTimeout(() => {
+//    //        container.remove();
+//    //    }, 0);
+//    //        
+//    //            // Optionally, you could remove the cart container if the quantity is 0
+//    //            let existingCartContainer = mainContentCart.querySelector('.cart-container');
+//    //            if (existingCartContainer) {
+//    //                existingCartContainer.remove();
+    //                const cartBody = document.querySelector('.main-content-cart-body');
+    //                cartBody.style.display = "block";
+    //            }
+    //        }
+        });
+
+      }
+    }
+
 
     changeBtnCartContent(); 
 
