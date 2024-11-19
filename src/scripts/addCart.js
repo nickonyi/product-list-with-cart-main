@@ -43,6 +43,7 @@ export const addCart = (e) => {
                 // Create a new cart container for the item
                 const cartContainer = document.createElement('div');
                 cartContainer.classList.add('cart-container');
+                
 
                 const itemDetails = document.createElement('div');
                 itemDetails.classList.add('item-details');
@@ -132,81 +133,29 @@ export const addCart = (e) => {
 
 
         // Event listener for decrementing product number and updating price
-divSub.addEventListener("click", (e) => {
-    //let productNumber = parseInt(prodNumber.textContent);
-    const mainContentCart = document.querySelector('.main-content-cart');
-    const parentContainer = parent.closest('.main-content-area-products');
-    const itemP = parentContainer.querySelector('.price');
-    //const itemPriceNumber =  parseFloat(itemP.textContent.replace(/[^0-9.]/g, ''));
+        divSub.addEventListener("click", (e) => {
+              // Find the cart container for the current product
+            const productName = parent.closest('.main-content-area-products').querySelector('h4').textContent;
+            
 
+        
+            // Find the corresponding cart container by product name
+            const cartContainer = Array.from(document.querySelectorAll('.cart-container')).find(cart => {
+                return cart.querySelector('.item-name').textContent === productName;
+            });
+        
+            const prodNumber = cartContainer.querySelector('.item-count');
+            let productNumber = parseInt(prodNumber.textContent.replace(/[^0-9]/g, ''), 10);
+            const priceText = cartContainer.querySelector('.item-price').textContent;
+            const itemPriceNumber = parseFloat(priceText.replace(/[^0-9.]/g, ''));
 
-   // Find the grandparent button-container (3 levels up)
-   const buttonContainer = e.target.closest('.main-content-area');
-   console.log(buttonContainer);
-   
-   if (!buttonContainer) return;
-
-   // Locate the sibling cart-container (at the same parent level)
-   let cartContainer = buttonContainer.nextElementSibling;
-   console.log(cartContainer);
-   
-   if(!cartContainer || !cartContainer.classList.contains('main-content-cart-container')) return;
-
-   // Navigate three levels down into the cart-container
-   cartContainer = cartContainer.querySelector('.cart-container'); 
-   // Get the product number and price elements
-   const prodNumber = cartContainer.querySelector('.item-count');
-   let productNumber = parseInt(prodNumber.textContent, 10);
-   const itemPriceNumber = parseFloat(cartContainer.querySelector('.item-price').textContent);
-   console.log([productNumber,cartContainer.querySelector('.item-price').textContent]);
-   
-   
-    
-    
-
-    // Retrieve the product number for this container
-    //const prodNumber = container.querySelector('.item-count-number'); // Adjust selector as needed
-    //let productNumber = parseInt(prodNumber.textContent, 10);
-    //const itemPriceNumber = parseFloat(container.querySelector('.item-price').textContent); // Adjust selector if needed
-
-    //if (productNumber > 1) {
-    //    productNumber--;
-    //    prodNumber.textContent = productNumber;
-//
-//    //    // Update the item count
-//    //    const itemCount = container.querySelector('.item-count');
-//    //    itemCount.textContent = `${productNumber}x`;
-//
-//    //    // Update the item price total
-//    //    const itemPriceTotal = container.querySelector('.item-price-total');
-//    //    itemPriceTotal.textContent = (productNumber * itemPriceNumber).toFixed(2);
-//    //} else {
-//    //    // If product number is less than 1, remove the item from the cart
-//    //    productNumber = 0;
-//    //    prodNumber.textContent = productNumber;
-//
-//    //    // Remove visual indicators and container itself
-//    //    container.querySelector('.btn').style.display = "flex";
-//    //    container.querySelector('.img').classList.remove('selected');
-//    //    container.querySelector('.btnParent').classList.remove('selected-btn');
-//
-//    //    setTimeout(() => {
-//    //        container.remove();
-//    //    }, 0);
-//    //        
-//    //            // Optionally, you could remove the cart container if the quantity is 0
-//    //            let existingCartContainer = mainContentCart.querySelector('.cart-container');
-//    //            if (existingCartContainer) {
-//    //                existingCartContainer.remove();
-    //                const cartBody = document.querySelector('.main-content-cart-body');
-    //                cartBody.style.display = "block";
-    //            }
-    //        }
-        });
-
-      }
-    }
-
+            console.log([productNumber,itemPriceNumber]);
+        
+                });
+            
+              }
+            }
+        
 
     changeBtnCartContent(); 
 
