@@ -164,16 +164,16 @@ divSub.addEventListener("click", (e) => {
        itemPriceTotal.textContent = (productNumber * itemPriceNumber).toFixed(2);
    } else {
         // If product number is less than 1, remove the item from the cart
-        //productNumber = 0;
-        //prodNumber.textContent = productNum
         // Remove visual indicators and container itself
-        //cartContainer.querySelector('.btn').style.display = "flex";
-        //cartContainer.querySelector('.img').classList.remove('selected');
-        //cartContainer.querySelector('.btnParent').classList.remove('selected-btn');
-        //setTimeout(() => {
-        //    cartContainer.remove();
-        //}, 0);
-        //    
+            
+        parent.querySelector('.img-cart-container').style.display = "flex";
+        parent.querySelector('.img-area').classList.remove('selected');
+        parent.querySelector('.main-content-img-cart').classList.remove('selected-btn');
+        const btnContainer = parent.querySelector('.btn-flex');
+        setTimeout(() => {
+            btnContainer.remove();
+        }, 0);
+            
                 // Optionally, you could remove the cart container if the quantity is 0
                 let existingCartContainer = cartContainer;
                 if (existingCartContainer) {
@@ -182,56 +182,11 @@ divSub.addEventListener("click", (e) => {
                     const allCartContainer = document.querySelectorAll('.cart-container'); 
 
                     if (allCartContainer.length === 0) {
-                        const cartBody = document.querySelector('.main-content-cart-body');
-                        console.log(cartBody);
-                        
+                        const cartBody = document.querySelector('.main-content-cart-body');                        
                         cartBody.style.display = "block"   
                     }              
                   }
                 }
-
-   
-    
-    
-
-    // Retrieve the product number for this container
-    //const prodNumber = container.querySelector('.item-count-number'); // Adjust selector as needed
-    //let productNumber = parseInt(prodNumber.textContent, 10);
-    //const itemPriceNumber = parseFloat(container.querySelector('.item-price').textContent); // Adjust selector if needed
-
-    //if (productNumber > 1) {
-    //    productNumber--;
-    //    prodNumber.textContent = productNumber;
-//
-//    //    // Update the item count
-//    //    const itemCount = container.querySelector('.item-count');
-//    //    itemCount.textContent = `${productNumber}x`;
-//
-//    //    // Update the item price total
-//    //    const itemPriceTotal = container.querySelector('.item-price-total');
-//    //    itemPriceTotal.textContent = (productNumber * itemPriceNumber).toFixed(2);
-//    //} else {
-//    //    // If product number is less than 1, remove the item from the cart
-//    //    productNumber = 0;
-//    //    prodNumber.textContent = productNumber;
-//
-//    //    // Remove visual indicators and container itself
-//    //    container.querySelector('.btn').style.display = "flex";
-//    //    container.querySelector('.img').classList.remove('selected');
-//    //    container.querySelector('.btnParent').classList.remove('selected-btn');
-//
-//    //    setTimeout(() => {
-//    //        container.remove();
-//    //    }, 0);
-//    //        
-//    //            // Optionally, you could remove the cart container if the quantity is 0
-//    //            let existingCartContainer = mainContentCart.querySelector('.cart-container');
-//    //            if (existingCartContainer) {
-//    //                existingCartContainer.remove();
-    //                const cartBody = document.querySelector('.main-content-cart-body');
-    //                cartBody.style.display = "block";
-    //            }
-    //        }
         });
 
       }
