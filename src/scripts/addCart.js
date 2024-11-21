@@ -96,6 +96,8 @@ export const addCart = (e) => {
         const  updateCartTotal = (mainContentCart) => {
             // Check if the full-price-total container already exists
             let existingFullPriceTotalContainer = mainContentCart.querySelector('.full-price-total');
+            const firstSubTotal = mainContentCart.querySelector('.item-price-total').textContent;
+           
         
             if (!existingFullPriceTotalContainer) {
                 // Create the total price container and its children
@@ -108,7 +110,7 @@ export const addCart = (e) => {
         
                 const fullPriceTotal = document.createElement('div');
                 fullPriceTotal.classList.add('full-price');
-                fullPriceTotal.textContent = '$0.00';
+                fullPriceTotal.textContent = firstSubTotal;
         
                 // Append children to the container
                 fullPriceTotalContainer.append(fullPriceTotalText, fullPriceTotal);
