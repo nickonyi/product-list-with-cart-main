@@ -103,7 +103,15 @@ export const addCart = (e) => {
         
                 // Update the total price of the cart
                 updateCartTotal(mainContentCart);
+
+                //add carbon neutral card
                 addCarbonNeutralCard(mainContentCart);
+
+                //add the confrim button
+                addConfrimButton(mainContentCart);
+
+                //Update heading quantity
+                updateCartHeading(mainContentCart);
 
             }
         }
@@ -155,8 +163,19 @@ export const addCart = (e) => {
                     fullPriceTotal.textContent = `$${totalPrice.toFixed(2)}`;
                 }
         
-                // Reposition the container to the last position in mainContentCart
-                mainContentCart.appendChild(existingFullPriceTotalContainer);
+                // Ensure the total price container is before the carbon-neutral card
+                const carbonNeutralContainer = mainContentCart.querySelector('.carbon-container');
+                console.log(carbonNeutralContainer);
+                
+                if (carbonNeutralContainer) {
+                    console.log(carbonNeutralContainer.previousElementSibling);
+                    
+                    if (carbonNeutralContainer.previousElementSibling == existingFullPriceTotalContainer) {
+                        mainContentCart.insertBefore(existingFullPriceTotalContainer, carbonNeutralContainer);
+                    }
+                } else {
+                    mainContentCart.appendChild(existingFullPriceTotalContainer);
+                }
             }
         }
 
@@ -181,8 +200,7 @@ export const addCart = (e) => {
             
                 // Append image and text to the container
                 carbonNeutralContainer.append(carbonNImg, carbonText);
-            
-                // Append the container to the main content cart
+
                 mainContentCart.appendChild(carbonNeutralContainer);
             } else {
                  // Append the container to the main content cart
@@ -192,7 +210,40 @@ export const addCart = (e) => {
         }
 
         const addConfrimButton = (mainContentCart) => {
+
+            const exisitingConfirmBtn = document.querySelector('.confirm-btn');
+
+            if (!exisitingConfirmBtn ) {
+                const confirmButton = document.createElement('button');
+                confirmButton.classList.add('confirm-btn');
+
+                confirmButton.textContent = "Confirm Order";
+
+                mainContentCart.appendChild(confirmButton);
+            } else {
+                mainContentCart.appendChild(exisitingConfirmBtn);
+            }
             
+        }
+
+        const updateCartHeading = (mainContentCart) => {
+           // Select all cart-container elements
+           const cartContainers = mainContentCart.querySelectorAll('.cart-container');   
+           let totalQuantity = 0;
+   
+           // Loop through each cart-container to calculate the total price
+           cartContainers.forEach(cart => {
+               const itemTotalCountElement = cart.querySelector('.item-count');
+              
+               if (itemTotalCountElement) {
+                   // Extract the price as a number and add it to the total
+                   const itemQ = parseFloat(itemTotalCountElement.textContent.replace(/[^0-9.]/g, ''));
+                   totalQuantity += itemQ;
+               }
+           });
+           
+           const heading = mainContentCart.querySelector('h2');
+           heading.textContent = `Your Cart(${totalQuantity})`; 
         }
 
 
@@ -236,7 +287,9 @@ export const addCart = (e) => {
 
             addItemsToProductCart();
             const mainContentCart = document.querySelector('.main-content-cart');
-            updateCartTotal(mainContentCart);     
+            updateCartTotal(mainContentCart);
+            //Update heading quantity
+            updateCartHeading(mainContentCart);     
         })
 
 
@@ -275,6 +328,8 @@ divSub.addEventListener("click", (e) => {
        //update the total price
        const mainContentCart = document.querySelector('.main-content-cart');
        updateCartTotal(mainContentCart);
+       //Update heading quantity
+       updateCartHeading(mainContentCart);
        
    } else {
         // If product number is less than 1, remove the item from the cart
