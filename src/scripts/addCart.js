@@ -163,19 +163,9 @@ export const addCart = (e) => {
                     fullPriceTotal.textContent = `$${totalPrice.toFixed(2)}`;
                 }
         
-                // Ensure the total price container is before the carbon-neutral card
-                const carbonNeutralContainer = mainContentCart.querySelector('.carbon-container');
-                console.log(carbonNeutralContainer);
-                
-                if (carbonNeutralContainer) {
-                    console.log(carbonNeutralContainer.previousElementSibling);
-                    
-                    if (carbonNeutralContainer.previousElementSibling == existingFullPriceTotalContainer) {
-                        mainContentCart.insertBefore(existingFullPriceTotalContainer, carbonNeutralContainer);
-                    }
-                } else {
+    
                     mainContentCart.appendChild(existingFullPriceTotalContainer);
-                }
+                
             }
         }
 
