@@ -53,7 +53,7 @@ export const addCart = (e) => {
                 itemCount.textContent = `${currentCount + 1}x`;
         
                 // Update item price total
-                itemPriceTotal.textContent = (parseFloat(itemCount.textContent.replace(/[^0-9.]/g, '')) * itemPriceNumber).toFixed(2);
+                itemPriceTotal.textContent = `$${(parseFloat(itemCount.textContent.replace(/[^0-9.]/g, '')) * itemPriceNumber).toFixed(2)}`;
             } else {
                 // Create a new cart container for the item
                 const cartContainer = document.createElement('div');
@@ -81,7 +81,7 @@ export const addCart = (e) => {
                 // Item total price
                 const itemPriceTotal = document.createElement('div');
                 itemPriceTotal.classList.add('item-price-total');
-                itemPriceTotal.textContent = (1 * itemPriceNumber).toFixed(2);
+                itemPriceTotal.textContent = `$${(1 * itemPriceNumber).toFixed(2)}`;
         
                 // Price container
                 const itemPriceContainer = document.createElement('div');

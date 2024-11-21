@@ -14,6 +14,7 @@ body {
     display: flex;
     padding-top: 5%;
     padding-inline: 5%;
+    gap:20px;
 }
 
 .main-content-area {
@@ -60,9 +61,12 @@ body {
     cursor: pointer;
 }
 
+.main-content-cart-container {
+    width:310px;
+}
 .main-content-cart {
     background-color: white;
-    padding-inline: 40px;
+    padding-inline: 20px;
     padding-block-start:10px ;
     padding-block-end: 30px;
     border-radius: 10px;
@@ -117,6 +121,52 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.cart-container {
+    display: flex;
+    border-bottom: .5px solid rgb(226, 223, 223);
+    padding-block:10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item-price-container {
+    display: flex;
+    padding-block: 10px;
+    gap:15px;
+}
+
+.item-count {
+    color: hsl(14, 86%, 42%);
+    font-weight: 700;
+}
+
+.item-price {
+    color:rgb(75, 73, 73);
+}
+
+.item-price-total {
+    color:rgb(75, 73, 73);
+    font-weight: 800;
+}
+
+.item-name {
+    font-weight: bold;
+}
+
+.main-content-description h4 {
+    font-weight: 300;
+    color: hsl(7, 20%, 60%);
+}
+
+.main-content-description h3 {
+    color: hsl(12, 20%, 44%);
+}
+
+.price {
+    font-weight: 500;
+    color: hsl(14, 86%, 42%);
 }
 
 /* Media query for mobile */

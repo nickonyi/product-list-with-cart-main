@@ -43,8 +43,8 @@ const productDisplay = () => {
        </div>   
     <!--Description area-->
          <div class="main-content-description">
-            <h4>${product.name}</h4>
-            <h3>${product.category}</h3>
+            <h4>${product.category}</h4>
+            <h3>${product.name}</h3>
             <p class="price">$${product.price}</p>
          </div>
         </div> 
