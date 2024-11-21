@@ -1,3 +1,6 @@
+import carbonImg from '../../assets/images/icon-carbon-neutral.svg'
+
+
 export const addCart = (e) => {
     const parent = e.target.closest('.main-content-img-area');
     let img = parent.querySelector('.img-area');    
@@ -33,63 +36,76 @@ export const addCart = (e) => {
             let existingCartContainer = Array.from(mainContentCart.querySelectorAll('.cart-container')).find(cart => {
                 return cart.querySelector('.item-name')?.textContent === itemNameText;
             });
+            
+            updateOrAddCartItem(existingCartContainer, itemNameText, itemPriceNumber, mainContentCart);
 
+        }
+
+
+        const updateOrAddCartItem = (existingCartContainer, itemNameText, itemPriceNumber, mainContentCart) => {
             if (existingCartContainer) {
-                // Update the count in the existing container
-                let itemCount = existingCartContainer.querySelector('.item-count');
-                let itemPriceTotal = existingCartContainer.querySelector('.item-price-total');
-                itemCount.textContent = `${parseInt(itemCount.textContent) + 1}x`;
+                // Update the count and total price in the existing container
+                const itemCount = existingCartContainer.querySelector('.item-count');
+                const itemPriceTotal = existingCartContainer.querySelector('.item-price-total');
+        
+                // Update item count
+                const currentCount = parseInt(itemCount.textContent);
+                itemCount.textContent = `${currentCount + 1}x`;
+        
+                // Update item price total
                 itemPriceTotal.textContent = (parseFloat(itemCount.textContent.replace(/[^0-9.]/g, '')) * itemPriceNumber).toFixed(2);
             } else {
                 // Create a new cart container for the item
                 const cartContainer = document.createElement('div');
                 cartContainer.classList.add('cart-container');
-
+        
+                // Item details container
                 const itemDetails = document.createElement('div');
                 itemDetails.classList.add('item-details');
-
+        
+                // Item name
                 const itemName = document.createElement('div');
                 itemName.classList.add('item-name');
                 itemName.textContent = itemNameText;
-
+        
+                // Item count
                 const itemCount = document.createElement('div');
                 itemCount.classList.add('item-count');
-                itemCount.textContent = `${1}x`; // Initial count when the item is first added
-
-                //Add item price
+                itemCount.textContent = `1x`; // Initial count when the item is first added
+        
+                // Item price
                 const itemPrice = document.createElement('div');
                 itemPrice.classList.add('item-price');
                 itemPrice.textContent = `@$${itemPriceNumber}`;
-
-                //price subtotal
+        
+                // Item total price
                 const itemPriceTotal = document.createElement('div');
                 itemPriceTotal.classList.add('item-price-total');
                 itemPriceTotal.textContent = (1 * itemPriceNumber).toFixed(2);
-
-                //the price container
+        
+                // Price container
                 const itemPriceContainer = document.createElement('div');
                 itemPriceContainer.classList.add('item-price-container');
-                itemPriceContainer.append(itemCount,itemPrice,itemPriceTotal)
-            
-                // Append itemName and itemCount to itemDetails
-                itemDetails.append(itemName,itemPriceContainer);
-
+                itemPriceContainer.append(itemCount, itemPrice, itemPriceTotal);
+        
+                // Append item details and price container
+                itemDetails.append(itemName, itemPriceContainer);
+        
                 // Add a remove button (optional)
                 const removeBtn = document.createElement('i');
                 removeBtn.classList.add('fa-regular', 'fa-circle-xmark');
-
-                
+        
                 // Append itemDetails and remove button to cartContainer
                 cartContainer.append(itemDetails, removeBtn);
-
-                // Append the new cartContainer to mainContentCart
+        
+                // Append the new cart container to mainContentCart
                 mainContentCart.appendChild(cartContainer);
-                
+        
+                // Update the total price of the cart
                 updateCartTotal(mainContentCart);
-                
+                addCarbonNeutralCard(mainContentCart);
 
             }
-
         }
 
 
@@ -142,6 +158,41 @@ export const addCart = (e) => {
                 // Reposition the container to the last position in mainContentCart
                 mainContentCart.appendChild(existingFullPriceTotalContainer);
             }
+        }
+
+        const addCarbonNeutralCard = (mainContentCart) => {
+            //Adding the carbon neutral card
+            const existingCarbonContainer = mainContentCart.querySelector('.carbon-container');
+
+            if (!existingCarbonContainer) {
+                // Create the carbon container
+                const carbonNeutralContainer = document.createElement('div');
+                carbonNeutralContainer.classList.add('carbon-container');
+            
+                // Create the image element
+                const carbonNImg = document.createElement('img');
+                carbonNImg.classList.add('carbon-img'); // No dot prefix for class name here
+                carbonNImg.src = carbonImg; // Ensure carbonImg is a valid URL or path
+            
+                // Create the text element
+                const carbonText = document.createElement('div');
+                carbonText.classList.add('carbon-img-text');
+                carbonText.textContent = "This is a carbon-neutral delivery";
+            
+                // Append image and text to the container
+                carbonNeutralContainer.append(carbonNImg, carbonText);
+            
+                // Append the container to the main content cart
+                mainContentCart.appendChild(carbonNeutralContainer);
+            } else {
+                 // Append the container to the main content cart
+                 mainContentCart.appendChild(existingCarbonContainer);
+            }
+
+        }
+
+        const addConfrimButton = (mainContentCart) => {
+            
         }
 
 
