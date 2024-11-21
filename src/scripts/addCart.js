@@ -108,7 +108,7 @@ export const addCart = (e) => {
                 addCarbonNeutralCard(mainContentCart);
 
                 //add the confrim button
-                addConfrimButton(mainContentCart);
+                addConfirmButton(mainContentCart);
 
                 //Update heading quantity
                 updateCartHeading(mainContentCart);
@@ -164,8 +164,24 @@ export const addCart = (e) => {
                 }
         
     
+                  // Append all cart containers first to ensure their correct order
+                    cartContainers.forEach(cart => mainContentCart.appendChild(cart));
+
+                    // Place the total price container directly after the cart containers
                     mainContentCart.appendChild(existingFullPriceTotalContainer);
-                
+
+                    // Ensure the carbon-neutral container (if it exists) is placed after the total price container
+                    const carbonNeutralContainer = mainContentCart.querySelector('.carbon-container');
+                    if (carbonNeutralContainer) {
+                        mainContentCart.appendChild(carbonNeutralContainer);
+                    }
+
+                    const confirmButton = mainContentCart.querySelector('.confirm-btn');
+                    if (confirmButton) {
+                        mainContentCart.appendChild(confirmButton);
+                    }
+
+
             }
         }
 
@@ -199,7 +215,7 @@ export const addCart = (e) => {
 
         }
 
-        const addConfrimButton = (mainContentCart) => {
+        const addConfirmButton = (mainContentCart) => {
 
             const exisitingConfirmBtn = document.querySelector('.confirm-btn');
 
