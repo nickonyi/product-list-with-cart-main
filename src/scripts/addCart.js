@@ -16,6 +16,7 @@ export const addCart = (e) => {
             
 
             const mainContentCart = document.querySelector('.main-content-cart');
+            
 
             // Selecting the parent container of the item being clicked
             const parentContainer = parent.closest('.main-content-area-products');
@@ -60,7 +61,7 @@ export const addCart = (e) => {
                 itemPrice.classList.add('item-price');
                 itemPrice.textContent = `@$${itemPriceNumber}`;
 
-                //price total
+                //price subtotal
                 const itemPriceTotal = document.createElement('div');
                 itemPriceTotal.classList.add('item-price-total');
                 itemPriceTotal.textContent = (1 * itemPriceNumber).toFixed(2);
@@ -77,17 +78,70 @@ export const addCart = (e) => {
                 const removeBtn = document.createElement('i');
                 removeBtn.classList.add('fa-regular', 'fa-circle-xmark');
 
+                
                 // Append itemDetails and remove button to cartContainer
                 cartContainer.append(itemDetails, removeBtn);
 
                 // Append the new cartContainer to mainContentCart
                 mainContentCart.appendChild(cartContainer);
+                
+                updateCartTotal(mainContentCart);
+                
+
             }
 
         }
 
 
-       
+        const  updateCartTotal = (mainContentCart) => {
+            // Check if the full-price-total container already exists
+            let existingFullPriceTotalContainer = mainContentCart.querySelector('.full-price-total');
+        
+            if (!existingFullPriceTotalContainer) {
+                // Create the total price container and its children
+                const fullPriceTotalContainer = document.createElement('div');
+                fullPriceTotalContainer.classList.add('full-price-total');
+        
+                const fullPriceTotalText = document.createElement('div');
+                fullPriceTotalText.classList.add('full-price-text');
+                fullPriceTotalText.textContent = "Order Total";
+        
+                const fullPriceTotal = document.createElement('div');
+                fullPriceTotal.classList.add('full-price');
+                fullPriceTotal.textContent = '$0.00';
+        
+                // Append children to the container
+                fullPriceTotalContainer.append(fullPriceTotalText, fullPriceTotal);
+        
+                // Append the full price total container to the mainContentCart
+                mainContentCart.appendChild(fullPriceTotalContainer);
+            } else {
+                // Select all cart-container elements
+                const cartContainers = mainContentCart.querySelectorAll('.cart-container');
+                let totalPrice = 0;
+        
+                // Loop through each cart-container to calculate the total price
+                cartContainers.forEach(cart => {
+                    const itemTotalPriceElement = cart.querySelector('.item-price-total');
+        
+                    if (itemTotalPriceElement) {
+                        // Extract the price as a number and add it to the total
+                        const itemPrice = parseFloat(itemTotalPriceElement.textContent.replace(/[^0-9.]/g, ''));
+                        totalPrice += itemPrice;
+                    }
+                });
+        
+                // Update the total price in the existing container
+                const fullPriceTotal = mainContentCart.querySelector('.full-price');
+                if (fullPriceTotal) {
+                    fullPriceTotal.textContent = `$${totalPrice.toFixed(2)}`;
+                }
+        
+                // Reposition the container to the last position in mainContentCart
+                mainContentCart.appendChild(existingFullPriceTotalContainer);
+            }
+        }
+
 
 
 
@@ -127,7 +181,9 @@ export const addCart = (e) => {
             prodNumber.textContent = productNumber;    
 
 
-            addItemsToProductCart();      
+            addItemsToProductCart();
+            const mainContentCart = document.querySelector('.main-content-cart');
+            updateCartTotal(mainContentCart);     
         })
 
 
@@ -162,6 +218,11 @@ divSub.addEventListener("click", (e) => {
        // Update the total price for this product
        const itemPriceTotal = cartContainer.querySelector('.item-price-total');
        itemPriceTotal.textContent = (productNumber * itemPriceNumber).toFixed(2);
+
+       //update the total price
+       const mainContentCart = document.querySelector('.main-content-cart');
+       updateCartTotal(mainContentCart);
+       
    } else {
         // If product number is less than 1, remove the item from the cart
         // Remove visual indicators and container itself
