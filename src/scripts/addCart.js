@@ -1,4 +1,5 @@
-import carbonImg from '../../assets/images/icon-carbon-neutral.svg'
+import carbonImg from '../../assets/images/icon-carbon-neutral.svg';
+import { confirmOrder } from './orderConfirm';
 
 
 export const addCart = (e) => {
@@ -370,4 +371,14 @@ divSub.addEventListener("click", (e) => {
 
     changeBtnCartContent(); 
 
+    //Confirm Event listerners
+    const confirmButton = document.querySelector('.confirm-btn');
+    const mainContentCart = document.querySelector('.main-content-cart');
+
+    confirmButton.addEventListener("click",() => {
+        confirmOrder(mainContentCart);
+    });
+
 }
+
+
