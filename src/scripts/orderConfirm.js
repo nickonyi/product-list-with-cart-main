@@ -72,7 +72,7 @@ const getGoodsOrdered = (modalBody) => {
     
         const productImage = document.createElement('img');
         productImage.classList.add('product-image');
-        productImage.src = ""
+        productImage.src = getImageByName(product.querySelector('.item-name').textContent);
         
     
         const productDetails = document.createElement('div');
@@ -119,4 +119,13 @@ const getGoodsOrdered = (modalBody) => {
     }
 
     
+}
+
+
+
+const getImageByName = (name) => {
+
+    const product = products.find((item)  => item.category === name);
+
+    return product ? product.image.thumbnail : null;
 }
