@@ -194,7 +194,8 @@ body {
     font-size: 14px;
 }
 
-.confirm-btn {
+.confirm-btn,
+.confirm-btn-new {
     margin-top: 20px;
     width: 100%;
     padding-block: 15px;
@@ -204,10 +205,14 @@ body {
     border-radius: 20px;
 }
 
-.confirm-btn:hover {
+
+.confirm-btn:hover,
+.confirm-btn-new:hover {
     cursor: pointer;
     background-color: rgb(158, 44, 9);
 }
+
+
 
 
 .modal-container {

@@ -1,17 +1,17 @@
+import iconOrderConfirmed from '../../assets/images/icon-order-confirmed.svg'
+
 export const confirmOrder = (mainContentCart) => {
    createOrderModal();
-}
 
- // Close the modal if the user clicks outside the modal content
- window.addEventListener("click", (event) => {
-    const modalContainer = document.querySelector('.modal-container');
-    console.log(modalContainer);
-    
-    if (event.target === modalContainer) {
-      modalContainer.style.display = "none";
-    }
+   // Close the modal if the user clicks outside the modal content
+ const confirmButton = document.querySelector('.confirm-btn-new');
+ confirmButton.addEventListener("click", () => {
+    location.reload();
   });
 
+}
+
+ 
 
 const createOrderModal = () => {
      const body = document.querySelector('body');
@@ -26,13 +26,25 @@ const createOrderModal = () => {
     const modalHeader = document.createElement('div');
     modalHeader.classList.add('modal-header');
 
-    
+    const iconOrder = document.createElement('img');
+    iconOrder.classList.add('icon-order');
+    iconOrder.src = iconOrderConfirmed;
+    const orderBigText = document.createElement('p');
+    orderBigText.classList.add('order-big-text');
+    orderBigText.textContent = "Order Confirmed";
+    const orderSmallText = document.createElement('p');
+    orderSmallText.classList.add('order-small-text');
+    orderSmallText.textContent = "We hope you enjoy your food!"
+    modalHeader.append(iconOrder,orderBigText,orderSmallText);
+
+
+
 
     const modalBody = document.createElement('div');
     modalBody.classList.add('modal-body');
 
-    const startNewBtn  = document.createElement('div');
-    startNewBtn.classList.add('confirm-btn');
+    const startNewBtn  = document.createElement('button');
+    startNewBtn.classList.add('confirm-btn-new');
     startNewBtn.textContent = "Start New Order"
 
 
