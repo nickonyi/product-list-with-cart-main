@@ -193,6 +193,20 @@ body {
 .carbon-img-text {
     font-size: 14px;
 }
+
+.confirm-btn {
+    margin-top: 20px;
+    width: 100%;
+    padding-block: 15px;
+    color: white;
+    background-color: hsl(14, 86%, 42%);
+    border: none;
+    border-radius: 20px;
+}
+
+.confirm-btn:hover {
+    cursor: pointer;
+}
 /* Media query for mobile */
 @media (max-width: 455px) {
     .main-content {
