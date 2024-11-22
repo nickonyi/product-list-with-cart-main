@@ -45,7 +45,7 @@ const productDisplay = () => {
          <div class="main-content-description">
             <h4>${product.category}</h4>
             <h3>${product.name}</h3>
-            <p class="price">$${product.price}</p>
+            <p class="price">$${(product.price).toFixed(2)}</p>
          </div>
         </div> 
       

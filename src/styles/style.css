@@ -169,6 +169,17 @@ body {
     color: hsl(14, 86%, 42%);
 }
 
+.full-price-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 20px;
+}
+
+.full-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
 /* Media query for mobile */
 @media (max-width: 455px) {
     .main-content {
