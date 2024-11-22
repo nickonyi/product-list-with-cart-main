@@ -42,6 +42,7 @@ const createOrderModal = () => {
 
     const modalBody = document.createElement('div');
     modalBody.classList.add('modal-body');
+    getGoodsOrdered(modalBody);
 
     const startNewBtn  = document.createElement('button');
     startNewBtn.classList.add('confirm-btn-new');
@@ -51,4 +52,11 @@ const createOrderModal = () => {
     modalBox.append(modalHeader,modalBody,startNewBtn);
     modalContainer.appendChild(modalBox);
     body.appendChild(modalContainer);
+}
+
+
+const getGoodsOrdered = (modalBody) => {
+    const productsOrdered = document.querySelectorAll('.cart-container');
+    console.log(productsOrdered);
+    
 }
