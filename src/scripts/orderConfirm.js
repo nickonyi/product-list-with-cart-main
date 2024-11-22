@@ -1,9 +1,12 @@
-import iconOrderConfirmed from '../../assets/images/icon-order-confirmed.svg'
+import iconOrderConfirmed from '../../assets/images/icon-order-confirmed.svg';
+import products from '../../data.json'
 
 export const confirmOrder = (mainContentCart) => {
-   createOrderModal();
+    if (!document.querySelector('.modal-container')) {
+        createOrderModal(); // Only create the modal if it doesn't already exist
+      };
 
-   // Close the modal if the user clicks outside the modal content
+   // New order when user clicks button
  const confirmButton = document.querySelector('.confirm-btn-new');
  confirmButton.addEventListener("click", () => {
     location.reload();
@@ -57,6 +60,63 @@ const createOrderModal = () => {
 
 const getGoodsOrdered = (modalBody) => {
     const productsOrdered = document.querySelectorAll('.cart-container');
-    console.log(productsOrdered);
+    const fullPrice = document.querySelector('.full-price').textContent;
+    
+
+    productsOrdered.forEach((product)  => {
+        const productWrapper = document.createElement('div');
+        productWrapper.classList.add('wrapper');
+    
+        const productContainer = document.createElement('div');
+        productContainer.classList.add('product-container');
+    
+        const productImage = document.createElement('img');
+        productImage.classList.add('product-image');
+        productImage.src = ""
+        
+    
+        const productDetails = document.createElement('div');
+        productDetails.classList.add('product-details');
+        const productName = document.createElement('p');
+        productName.classList.add('product-name');
+        productName.textContent = product.querySelector('.item-name').textContent;
+
+
+        const productPriceDetailsContainer = document.createElement('div');
+        productPriceDetailsContainer.classList.add('product-price-details');
+        const productCount = document.createElement('p');
+        productCount.textContent = product.querySelector('.item-count').textContent;
+        const productPrice = document.createElement('P');
+        productPrice.textContent = product.querySelector('.item-price').textContent
+        productPriceDetailsContainer.append(productCount,productPrice);
+        productDetails.append(productName,productPriceDetailsContainer);
+    
+        const productTotalPrice = document.createElement('p');
+        productTotalPrice.classList.add('product-total-price');
+        productTotalPrice.textContent = product.querySelector('.item-price-total').textContent
+    
+    
+    
+        productContainer.append(productImage,productDetails,productTotalPrice);  
+        modalBody.appendChild(productContainer);
+    })
+    
+    const exisistingOrderTContainer = document.querySelector('.order-total-container');
+
+    if (!exisistingOrderTContainer) {
+        const orderTotalContainer = document.createElement('div');
+        orderTotalContainer.classList.add('order-total-container');
+    
+        const orderText = document.createElement('p');
+        orderText.textContent = "Order Total"
+        const orderPrice = document.createElement('p');
+        orderPrice.textContent = fullPrice;
+    
+        orderTotalContainer.append(orderText,orderPrice);
+        modalBody.appendChild(orderTotalContainer);
+    } else {
+        modalBody.appendChild(exisistingOrderTContainer);
+    }
+
     
 }
