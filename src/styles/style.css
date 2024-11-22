@@ -12,8 +12,8 @@ body {
 
 .main-content {
     display: flex;
-    padding-top: 5%;
-    padding-inline: 5%;
+    padding-block: 5%;
+    padding-inline: 4%;
     gap:20px;
 }
 
@@ -179,6 +179,19 @@ body {
 .full-price {
     font-size: 1.5rem;
     font-weight: 700;
+}
+
+.carbon-container {
+    display: flex;
+    gap: 10px;
+    background-color:  hsl(13, 31%, 94%);
+    padding-left: 15px;
+    padding-block: 15px;
+    border-radius: 5px;
+}
+
+.carbon-img-text {
+    font-size: 14px;
 }
 /* Media query for mobile */
 @media (max-width: 455px) {
