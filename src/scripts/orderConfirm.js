@@ -73,6 +73,9 @@ const getGoodsOrdered = (modalBody) => {
         const productImage = document.createElement('img');
         productImage.classList.add('product-image');
         productImage.src = getImageByName(product.querySelector('.item-name').textContent);
+
+        const productDetailsContainer = document.createElement('div');
+        productDetailsContainer.classList.add('product-details-container');
         
     
         const productDetails = document.createElement('div');
@@ -80,6 +83,7 @@ const getGoodsOrdered = (modalBody) => {
         const productName = document.createElement('p');
         productName.classList.add('product-name');
         productName.textContent = product.querySelector('.item-name').textContent;
+        productDetailsContainer.append(productImage,productDetails);
 
 
         const productPriceDetailsContainer = document.createElement('div');
@@ -97,7 +101,7 @@ const getGoodsOrdered = (modalBody) => {
     
     
     
-        productContainer.append(productImage,productDetails,productTotalPrice);  
+        productContainer.append(productDetailsContainer,productTotalPrice);  
         modalBody.appendChild(productContainer);
     })
     

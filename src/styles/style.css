@@ -249,15 +249,6 @@ body {
     margin-block: 20px;
   }
 
-  .product-container {
-    display: flex;
-  }
-
-  .product-image {
-    width:40px;
-    height: 40px;
-  }
-
   .order-big-text {
     font-size: 2rem;
     padding: 20px 0 10px 0;
@@ -270,7 +261,38 @@ body {
 
   .modal-body {
     background-color: hsl(13, 31%, 94%);
+    padding-inline: 20px;
+    border-radius: 5px;
   }
+
+  .product-container {
+    display: flex;
+    padding-block: 10px;
+    justify-content: space-between;
+    border-bottom:1px solid rgb(238, 225, 225) ;
+  }
+
+  .product-image {
+    width:40px;
+    height: 40px;
+  }
+  .product-details-container {
+    display: flex;
+    gap:20px;
+  }
+  .product-price-details {
+    display: flex;
+    gap:20px;
+    padding-block: 5px;
+  }
+
+  .product-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  
 
 
 /* Media query for mobile */
