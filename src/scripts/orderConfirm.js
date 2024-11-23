@@ -91,7 +91,7 @@ const getGoodsOrdered = (modalBody) => {
         const productCount = document.createElement('p');
         productCount.textContent = product.querySelector('.item-count').textContent;
         const productPrice = document.createElement('P');
-        productPrice.textContent = product.querySelector('.item-price').textContent
+        productPrice.textContent = product.querySelector('.item-price').textContent;
         productPriceDetailsContainer.append(productCount,productPrice);
         productDetails.append(productName,productPriceDetailsContainer);
     
@@ -114,6 +114,7 @@ const getGoodsOrdered = (modalBody) => {
         const orderText = document.createElement('p');
         orderText.textContent = "Order Total"
         const orderPrice = document.createElement('p');
+        orderPrice.classList.add('full-price');
         orderPrice.textContent = fullPrice;
     
         orderTotalContainer.append(orderText,orderPrice);
