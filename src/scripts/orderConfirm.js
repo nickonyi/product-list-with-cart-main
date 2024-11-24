@@ -89,9 +89,11 @@ const getGoodsOrdered = (modalBody) => {
         const productPriceDetailsContainer = document.createElement('div');
         productPriceDetailsContainer.classList.add('product-price-details');
         const productCount = document.createElement('p');
+        productCount.classList.add('product-count');
         productCount.textContent = product.querySelector('.item-count').textContent;
         const productPrice = document.createElement('P');
-        productPrice.textContent = product.querySelector('.item-price').textContent;
+        productPrice.classList.add('product-price');
+        productPrice.textContent = "@$" +parseFloat(product.querySelector('.item-price').textContent.replace(/[^0-9.]/g, '')).toFixed(2);
         productPriceDetailsContainer.append(productCount,productPrice);
         productDetails.append(productName,productPriceDetailsContainer);
     
