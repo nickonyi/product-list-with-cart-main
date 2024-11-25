@@ -1,4 +1,3 @@
-import { container } from 'webpack';
 import carbonImg from '../../assets/images/icon-carbon-neutral.svg';
 import { confirmOrder } from './orderConfirm';
 

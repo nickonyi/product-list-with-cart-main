@@ -55,7 +55,8 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        type: 'json' 
+        type: 'json',
+        exclude: /node_modules\/@swc\/core/ 
       },
       {
         test: /\.html$/i,
@@ -80,7 +81,12 @@ module.exports = {
       {
         test: /@swc\/core/,
         loader: 'null-loader', 
-      },      
+      },    
+      {
+        test: /\.json$/,
+        type: 'json', // Use Webpack's built-in JSON loader
+        exclude: /node_modules\/@swc\/core/, // Explicitly exclude @swc/core package.json
+      },  
     ],
   } 
 };
