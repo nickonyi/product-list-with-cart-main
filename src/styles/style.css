@@ -308,6 +308,9 @@ body {
     font-weight: 800;
   }
   
+  i:hover {
+    cursor: pointer;
+  }
 
 
 /* Media query for mobile */

@@ -12,13 +12,42 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@swc/core": "^1.9.3",
+    "@swc/wasm": "^1.9.3",
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
     "copy-webpack-plugin": "^12.0.2",
+    "crypto-browserify": "^3.12.1",
     "css-loader": "^7.1.2",
+    "esbuild": "^0.24.0",
+    "file-loader": "^6.2.0",
     "html-loader": "^5.1.0",
     "html-webpack-plugin": "^5.6.3",
+    "https-browserify": "^1.0.0",
+    "null-loader": "^4.0.1",
+    "path-browserify": "^1.0.1",
+    "pnpapi": "^0.0.0",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
     "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.1",
+    "tty-browserify": "^0.0.1",
+    "uglify-js": "^3.19.3",
+    "url": "^0.11.4",
+    "vm-browserify": "^1.1.2"
+  },
+  "dependencies": {
+    "assert": "^2.1.0",
+    "child_process": "^1.0.2",
+    "constants-browserify": "^1.0.0",
+    "fs-extra": "^11.2.0",
+    "os-browserify": "^0.3.0",
+    "querystring-es3": "^0.2.1",
+    "terser-webpack-plugin": "^5.3.10",
+    "util": "^0.12.5",
     "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.1.0"
+    "webpack-dev-server": "^5.1.0",
+    "worker-threads": "^1.0.0"
   }
 }
