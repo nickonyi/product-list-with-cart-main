@@ -50,7 +50,7 @@ This project served as an excellent practice ground for enhancing my knowledge o
 
 
 ## Author
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/nickonyi)
+- Frontend Mentor - [@nick_onyi](https://www.frontendmentor.io/profile/nickonyi)
 
 
 
