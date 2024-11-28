@@ -13,7 +13,7 @@ const productDisplay = () => {
         <div class="main-content-img-area" >
           <img class="img-area" src="${product.image.mobile}" alt="${product.category}">
           <div class="main-content-img-cart">
-           <img src="../assets/images/icon-add-to-cart.svg" alt="">
+           <img src="./assets/images/icon-add-to-cart.svg" alt="">
            <span>Add to cart</span>
           </div>
        </div>   
@@ -36,7 +36,7 @@ const productDisplay = () => {
           <img class="img-area" src="${product.image.desktop}" alt="${product.category}">
           <div class="main-content-img-cart">
           <div class="img-cart-container">
-           <img src="../assets/images/icon-add-to-cart.svg" alt="">
+           <img src="./assets/images/icon-add-to-cart.svg" alt="">
            <span>Add to cart</span>
            </div>
           </div>
