@@ -2,9 +2,12 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
+
+
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: "./src/scripts/index.js",
   output: {
     filename: "main.js",
@@ -13,28 +16,8 @@ module.exports = {
   },
   resolve: {
     fallback: {
-      "zlib": require.resolve("browserify-zlib"),
-      "crypto": require.resolve("crypto-browserify"),
-      "path": require.resolve("path-browserify"),
-      "vm": require.resolve("vm-browserify"),
-      "https": require.resolve("https-browserify"),
-      "http": require.resolve("stream-http"),
-      "url": require.resolve("url/"),
-      "buffer": require.resolve("buffer/"),
-      "stream": require.resolve("stream-browserify"),
-      os: require.resolve('os-browserify/browser'),
-      fs: require.resolve('fs-extra'),
-      querystring: require.resolve('querystring-es3'),
-      worker_threads: false, 
-      "assert": require.resolve("assert/"),
-      "constants": require.resolve("constants-browserify"),
-      "child_process": false, 
-      "fs": false,             
-      "module": false, 
-      "tty": require.resolve("tty-browserify"),
-      "inspector": false, 
-      "pnpapi": false,
-    }
+      process: require.resolve('process/browser'),
+    },
   },
   devtool: 'inline-source-map',
   plugins: [
@@ -45,6 +28,9 @@ module.exports = {
       patterns: [
         { from: 'assets', to: 'assets' }, 
       ],
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
     }),
   ],
   module: {
